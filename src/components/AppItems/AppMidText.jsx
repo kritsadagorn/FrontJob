@@ -7,7 +7,7 @@ import SkillBarChart from "./SkillBarChart";
 function AppMidText() {
   return (
     <>
-      <section className="section1 relative bg-[url('../src/assets/backgroundMain2.jpg')] dark:bg-[url('../src/assets/backgroundMain3.jpg')] transition-all duration-500 ease-in-out">
+      <section className="section1 relative bg-[url('/backgroundMain2.jpg')] dark:bg-[url('backgroundMain3.jpg')] transition-all duration-500 ease-in-out">
         <div className="App-topic">
           <div className="AppMidText-container">
             <div>
