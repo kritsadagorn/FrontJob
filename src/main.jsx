@@ -7,6 +7,7 @@ import Learn from "./pages/Learn.jsx";
 import Position from "./pages/Position.jsx";
 import About from "./pages/About.jsx";
 import PosDetail from "./pages/Pos-Detail.jsx";
+import "./index.css";
 import {
   Chart as ChartJS,
   RadialLinearScale,

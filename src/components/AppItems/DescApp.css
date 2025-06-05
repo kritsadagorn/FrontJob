@@ -44,8 +44,7 @@
 } 
 
 .desc-bg span{
-    @apply text-xs text-center md:text-xl text-neutral-500/80;
-    font-family: 'Kanit',sans-serif;
+    @apply text-xs text-center md:text-xl text-neutral-500/80 font-kanit;
 }
 .animate-border{
     position:relative;

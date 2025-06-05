@@ -44,8 +44,7 @@ body {
   @apply md:items-start md:text-left md:ml-8 lg:ml-16 xl:ml-20 2xl:ml-40;
   @apply landscape:mt-8 sm:landscape:mt-12 md:landscape:mt-0;
   @apply md:-mt-32 lg:-mt-48 xl:-mt-52 2xl:-mt-60;
-  @apply dark:text-neutral-300;
-  font-family: 'Ubuntu', sans-serif;
+  @apply dark:text-neutral-300 font-ubuntu;
 }
 
 /* Responsive typography scaling */
@@ -62,8 +61,7 @@ body {
   @apply text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl;
   @apply w-[85%] sm:w-[70%] md:w-[60%] lg:w-[45%] xl:w-[35%] 2xl:w-[30%];
   @apply md:text-left;
-  @apply dark:text-neutral-300;
-  font-family: 'Kanit', sans-serif;
+  @apply dark:text-neutral-300 font-kanit;
   line-height: 1.5;
 }
 
@@ -75,14 +73,14 @@ body {
 /* Enhanced responsive link styling */
 .linkText {
   @apply inline-block cursor-pointer duration-500 font-light underline-offset-[2px] mt-3;
-  @apply text-sm sm:text-base lg:text-lg;
+  @apply text-sm sm:text-base lg:text-base;
   @apply text-neutral-50 text-center;
   @apply sm:landscape:text-black sm:landscape:bg-white/60 sm:landscape:rounded-2xl sm:landscape:px-3 sm:landscape:py-2;
   @apply md:text-left;
   @apply dark:text-neutral-200 dark:sm:landscape:text-white dark:sm:landscape:bg-black/60;
   
   /* Better mobile touch targets */
-  @apply py-2 px-1 sm:py-1 sm:px-0;
+  @apply py-2 px-1 sm:py-1 sm:px-3;
 }
 
 .linkText:hover {
@@ -95,8 +93,7 @@ body {
 
 /* Responsive advice section */
 .advice h2 {
-  font-family: 'Kanit', sans-serif;
-  @apply font-light text-lg sm:text-xl md:text-2xl lg:text-3xl;
+  @apply font-kanit font-light text-lg sm:text-xl md:text-2xl lg:text-3xl;
 }
 
 /* Enhanced footer responsiveness */
@@ -104,8 +101,7 @@ footer {
   @apply bg-[#f3f3f3] w-full h-auto py-6 sm:py-8 px-4 sm:px-6 lg:px-8;
   @apply text-center flex justify-center items-center text-white;
   @apply text-sm sm:text-base;
-  @apply dark:bg-neutral-800;
-  font-family: 'Kanit', sans-serif;
+  @apply dark:bg-neutral-800 font-kanit;
 }
 
 /* Responsive utilities for better mobile experience */

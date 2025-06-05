@@ -2,8 +2,7 @@
 #sortFilter,
 #positionFilter,
 #trendingFilter{
-    font-family:'Kanit',sans-serif;
-    @apply font-light;
+    @apply font-light font-kanit;
 }
 
 .navfont Link{

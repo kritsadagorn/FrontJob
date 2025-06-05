@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-    @apply font-Ysabeau-SC
-}
-
 .learn-container {
     @apply bg-gradient-to-br from-neutral-50 to-neutral-100 
     dark:from-neutral-950 dark:to-neutral-900 

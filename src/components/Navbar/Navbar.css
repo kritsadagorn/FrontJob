@@ -54,8 +54,7 @@
 
 .mobile-link {
   @apply block w-full py-2 px-4 text-center text-white font-medium tracking-wide rounded-lg transition-all duration-300;
-  @apply bg-neutral-700/50 hover:bg-neutral-600 hover:shadow hover:scale-102;
-  font-family: 'Kanit', sans-serif;
+  @apply bg-neutral-700/50 hover:bg-neutral-600 hover:shadow hover:scale-102 font-kanit;
   transform-origin: center;
   font-size: 0.9rem;
 }
@@ -90,8 +89,7 @@
 
 .nav-text {
   @apply inline-block font-light text-sm text-slate-200 px-3 py-2 rounded-xl transition-all duration-300;
-  @apply hover:bg-neutral-700 hover:text-white;
-  font-family: 'Kanit', sans-serif;
+  @apply hover:bg-neutral-700 hover:text-white font-kanit;
 }
 
 /* ========== Desktop Settings ========== */
@@ -113,8 +111,7 @@
 
 .language-selector {
   @apply px-3 py-1.5 text-sm rounded-full border border-white border-opacity-20 cursor-pointer transition-all;
-  @apply hover:bg-neutral-700 text-white;
-  font-family: 'Kanit', sans-serif;
+  @apply hover:bg-neutral-700 text-white font-kanit;
 }
 
 /* ========== Dark Mode ========== */

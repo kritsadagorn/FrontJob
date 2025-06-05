@@ -11,13 +11,11 @@
 }
 
 .card-topic {
-    @apply mt-4 text-[40px] text-[#fff] leading-8 tracking-wide;
-    font-family: 'Kanit', sans-serif;
+    @apply mt-4 text-[40px] text-[#fff] leading-8 tracking-wide font-kanit;
 }
 
 .card-desc{
-    @apply text-[#f9f9f9] text-lg mt-3 tracking-wide;
-    font-family: 'ubuntu',sans-serif;
+    @apply text-[#f9f9f9] text-lg mt-3 tracking-wide font-ubuntu;
 }
 
 /* .card-pc{

@@ -3,3 +3,15 @@
 @tailwind utilities;
 
 /* ... */
+@font-face {
+    font-family: 'Kanit';
+    src: url(/fonts/Kanit-Regular.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Ubuntu';
+    src: url(/fonts/Ubuntu-Regular.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'YsabeauSC';
+    src: url(/fonts/YsabeauSC-Regular.ttf) format('truetype');
+}
