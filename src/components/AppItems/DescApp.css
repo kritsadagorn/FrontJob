@@ -39,7 +39,7 @@
 }
 
 .desc-bg{
-    @apply flex justify-center items-center h-20 bg-[url('../src/assets/descapppic.jpg')] dark:bg-[url('../src/assets/descapppic2.jpg')] bg-cover bg-bottom bg-no-repeat overflow-hidden;
+    @apply flex justify-center items-center h-20 bg-[url('/descapppic.jpg')] dark:bg-[url('/descapppic2.jpg')] bg-cover bg-bottom bg-no-repeat overflow-hidden;
     transition: all ease-in-out;
 } 
 
