@@ -1,5 +1,4 @@
 import React from 'react';
-import Logo from '../../assets/Logo.png';
 import './SubNavbar.css'
 import { Link } from 'react-router-dom';
 
@@ -12,7 +11,7 @@ function SubNavbar() {
       <div className="flex items-center space-x-6 w-full md:w-auto">
 
         {/* Logo Section */}
-        <Link to="/"><img src={Logo} alt="Logo" className="h-8" /></Link>
+        <Link to="/"><img src="/LogoWhite.png" alt="Logo" className="h-8" /></Link>
         
         {/* Menu Section */}
         <div className="hidden md:flex space-x-6">

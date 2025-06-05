@@ -8,7 +8,7 @@
 }
 
 .navbar-wrapper {
-  @apply relative flex flex-col px-4 py-2 mx-auto max-w-7xl;
+  @apply relative flex flex-col px-4 py-[2px] mx-auto max-w-7xl;
   @apply md:flex-row md:items-center md:justify-between md:px-6;
 }
 
@@ -24,7 +24,8 @@
 
 .logo {
   @apply h-8 w-auto transition-all duration-300 ease-in-out;
-  @apply md:h-10;
+  @apply md:h-[60px];
+  @apply translate-y-1;
 }
 
 .logo:hover {

@@ -1,7 +1,6 @@
 import React from "react";
 import "../components/About/About.css";
 import "animate.css";
-import logo from "../assets/Logo.png";
 import jai from "../assets/jai.jpg";
 import bell from "../assets/bell.jpg";
 import earth from "../assets/earth.jpg";
@@ -48,7 +47,7 @@ function About() {
       <div className="mission-section">
         <div className="mission-content">
           <div className="mission-image animate__animated animate__fadeInLeft">
-            <img src={logo} alt="Job Explore Logo" />
+            <img src="/LogoBlack.png" alt="Job Explore Logo" />
           </div>
           <div className="mission-text animate__animated animate__fadeInRight">
             <h2 className="section-title">Our Mission</h2>

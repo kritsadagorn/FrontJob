@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaRegLightbulb, FaBars, FaTimes } from 'react-icons/fa';
-import Logo from '../../assets/Logo.png';
 import './Navbar.css';
 
 function Navbar() {
@@ -67,7 +66,7 @@ function Navbar() {
         <div className="navbar-top">
           <div className="navbar-logo">
             <Link to="/" onClick={closeMobileMenu}>
-              <img src={Logo} alt="logo" className="logo" />
+              <img src="/OnlyLogoWhite.png" alt="logo" className="logo" />
             </Link>
           </div>
 
