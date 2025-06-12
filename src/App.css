@@ -97,12 +97,12 @@ body {
 }
 
 /* Enhanced footer responsiveness */
-footer {
-  @apply bg-[#f3f3f3] w-full h-auto py-6 sm:py-8 px-4 sm:px-6 lg:px-8;
-  @apply text-center flex justify-center items-center text-white;
+/* footer {
+  @apply bg-[#f3f3f3] w-full py-6 sm:py-8 px-4 sm:px-6 lg:px-8;
+  @apply text-center flex justify-center text-white;
   @apply text-sm sm:text-base;
   @apply dark:bg-neutral-800 font-kanit;
-}
+} */
 
 /* Responsive utilities for better mobile experience */
 @media (max-width: 640px) {

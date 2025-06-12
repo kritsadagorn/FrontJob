@@ -7,7 +7,7 @@ export default function Rootlayout() {
   return (
     <div>
       <Navbar />
-      <div>
+      <div className="h-full">
         <Outlet></Outlet>
       </div>
       <Footer />
