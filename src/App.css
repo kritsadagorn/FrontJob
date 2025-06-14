@@ -264,6 +264,15 @@ footer {
   }
 }
 
+/* Custom animation delays for faster loading */
+.animate__delay-500ms {
+  animation-delay: 0.5s;
+}
+
+.animate__delay-1500ms {
+  animation-delay: 1.5s;
+}
+
 /* ===== MODERN MINIMAL HERO SECTION ===== */
 .hero-section {
   @apply relative min-h-screen flex items-center justify-center;
@@ -1438,5 +1447,17 @@ footer {
 
   .footer-bottom-content {
     @apply text-center;
+  }
+}
+
+/* Ensure responsive table display */
+@media (min-width: 768px) {
+  .table-body-container {
+    display: block;
+  }
+
+  .table-container table {
+    table-layout: fixed;
+    width: 100%;
   }
 }

@@ -11,6 +11,7 @@ import Pagination from "@/components/Position/Pagination"
 function Position() {
   const [currentPage, setCurrentPage] = useState(1)
   const [data, setData] = useState([])
+  const [loading, setLoading] = useState(true)
   const [filter, setFilter] = useState({
     is_updated: false,
     positionSort: "asc",
@@ -29,48 +30,62 @@ function Position() {
     setPage(page)
     window.scrollTo(0, 0)
   }
-  async function loadJobs() {
-    const resp = await fetch(
-      `${import.meta.env.VITE_API_URL}/api/jobs?${new URLSearchParams({
-        sortPos: filter.positionSort,
-        sortTrending: filter.trendingSort,
-        groupOfPos: filter.positionGroupIds,
-        search: filter.searchQuery,
-        language: selectedProgramLanguage,
-        page,
-      }).toString()}`,
-    )
-    const js = await resp.json()
-    setPageTotal(js.pagination.pageTotal)
-    // Reset data
-    const result = []
-    for (const data of js.items ?? []) {
-      const transformed = {
-        id: data.id,
-        position: data.position.name,
-        trending: data.trending.name,
-        skills: data.position.job_skills ?? [],
-      }
-      result.push(transformed)
-    }
 
-    setData(result)
-    // console.log(data, result)
-  }
-  useEffect(() => {
-    return () => {
-      void loadJobs()
+  async function loadJobs() {
+    try {
+      setLoading(true)
+      const resp = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/jobs?${new URLSearchParams({
+          sortPos: filter.positionSort,
+          sortTrending: filter.trendingSort,
+          groupOfPos: filter.positionGroupIds,
+          search: filter.searchQuery,
+          language: selectedProgramLanguage,
+          page,
+        }).toString()}`,
+      )
+
+      if (!resp.ok) {
+        throw new Error("Failed to fetch jobs")
+      }
+
+      const js = await resp.json()
+      setPageTotal(js.pagination?.pageTotal || 0)
+
+      // Reset data
+      const result = []
+      for (const data of js.items ?? []) {
+        const transformed = {
+          id: data.id,
+          position: data.position?.name || "Unknown Position",
+          trending: data.trending?.name || "AVERAGE",
+          skills: data.position?.job_skills ?? [],
+        }
+        result.push(transformed)
+      }
+
+      setData(result)
+      console.log("Loaded jobs:", result) // Debug log
+    } catch (error) {
+      console.error("Error loading jobs:", error)
+      setData([]) // Set empty array on error
+    } finally {
+      setLoading(false)
     }
+  }
+
+  useEffect(() => {
+    loadJobs()
   }, [])
 
   useEffect(() => {
     if (filter.is_updated) {
-      void loadJobs()
+      loadJobs()
     }
   }, [filter, page])
 
   useEffect(() => {
-    void loadJobs()
+    loadJobs()
   }, [selectedProgramLanguage])
 
   return (
@@ -104,24 +119,38 @@ function Position() {
 
             {/* Main Table Section - Takes remaining space */}
             <div className="table-section flex flex-col flex-1 min-w-0">
-              <MainTable
-                // Sort trending function
-                onTrendingSortToggle={() => {
-                  setFilter((p) => ({
-                    ...p,
-                    trendingSort: p.trendingSort === "asc" ? "desc" : "asc",
-                  }))
-                }}
-                trendingSort={filter.trendingSort}
-                data={data}
-                currentPage={page}
-                handlePageChange={handlePageChange}
-                onLanguageSelected={(val) => {
-                  setSelectedProgramLanguage(val)
-                }}
-              />
-              {/* Pagination */}
-              <Pagination currentPage={page} totalPages={pageTotal} handlePageChange={handlePageChange} />
+              {loading ? (
+                <div className="flex items-center justify-center h-96">
+                  <div className="text-center">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
+                    <p className="text-stone-600 dark:text-stone-400">Loading positions...</p>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <MainTable
+                    // Sort trending function
+                    onTrendingSortToggle={() => {
+                      setFilter((p) => ({
+                        ...p,
+                        trendingSort: p.trendingSort === "asc" ? "desc" : "asc",
+                        is_updated: true,
+                      }))
+                    }}
+                    trendingSort={filter.trendingSort}
+                    data={data}
+                    currentPage={page}
+                    handlePageChange={handlePageChange}
+                    onLanguageSelected={(val) => {
+                      setSelectedProgramLanguage(val)
+                    }}
+                  />
+                  {/* Pagination */}
+                  {pageTotal > 0 && (
+                    <Pagination currentPage={page} totalPages={pageTotal} handlePageChange={handlePageChange} />
+                  )}
+                </>
+              )}
             </div>
           </div>
         </div>

@@ -26,14 +26,14 @@ function AppMidText() {
             </h1>
 
             {/* Subtitle */}
-            <p className="hero-subtitle animate__animated animate__fadeInUp animate__delay-1s">
+            <p className="hero-subtitle animate__animated animate__fadeInUp animate__delay-500ms">
               Discover your perfect career path in tech with comprehensive insights, trending opportunities, and
               detailed role analysis
             </p>
           </div>
 
           {/* Feature Pills */}
-          <div className="hero-features animate__animated animate__fadeInUp animate__delay-2s">
+          <div className="hero-features animate__animated animate__fadeInUp animate__delay-1s">
             <div className="feature-pill">
               <Code className="w-4 h-4" />
               <span>Tech Roles</span>
@@ -49,7 +49,7 @@ function AppMidText() {
           </div>
 
           {/* CTA Button */}
-          <div className="hero-cta animate__animated animate__fadeInUp animate__delay-3s">
+          <div className="hero-cta animate__animated animate__fadeInUp animate__delay-1500ms">
             <Link to="/position/comeng" className="cta-button group">
               <span>Explore Positions</span>
               <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
@@ -57,7 +57,7 @@ function AppMidText() {
           </div>
 
           {/* Stats */}
-          <div className="hero-stats animate__animated animate__fadeInUp animate__delay-4s">
+          <div className="hero-stats animate__animated animate__fadeInUp animate__delay-2s">
             <div className="stat-item">
               <div className="stat-number">50+</div>
               <div className="stat-label">Tech Roles</div>
