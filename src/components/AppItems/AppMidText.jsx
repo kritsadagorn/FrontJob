@@ -1,38 +1,83 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "animate.css";
-import SkillBarChart from "./SkillBarChart";
+import { Link } from "react-router-dom"
+import { ArrowRight, Code, Briefcase, TrendingUp } from "lucide-react"
+import "animate.css"
 
 function AppMidText() {
   return (
-    <>
-      <section className="section1 relative transition-all duration-500 ease-in-out">
-        <div className="App-topic">
-          <div className="AppMidText-container">
-            <div>
-              <div className="web-topic topic-animate relative mt-8">
-                <h1 className="topicText">~position</h1>
-                <h1 className="topicText">explorer</h1>
-                <div className="subText mt-4">
-                  Position Explorer lets you explore job roles in IT and tech,
-                  helping you plan your career path with key{" "}
-                  <span className="text-[#1f1f1f] font-bold underline decoration-neutral-200/40">
-                    insights.
-                  </span>
-                </div>
-                <div className="hidden xl:block linkText mt-8">
-                  <Link to="/position/comeng">
-                    searching for computer engineer roles
-                  </Link>
-                </div>
-              </div>
+    <section className="hero-section relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Modern Minimal Particles */}
+      <div className="hero-particles-modern"></div>
+      <div className="hero-geometric-shapes"></div>
+      <div className="hero-floating-dots"></div>
+
+      {/* Content */}
+      <div className="hero-content relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center">
+          {/* Main Heading */}
+          <div className="hero-title-wrapper mb-8">
+            <h1 className="hero-title animate__animated animate__fadeInUp">
+              <span className="hero-title-accent">~position</span>
+              <br />
+              <span className="hero-title-main">explorer</span>
+            </h1>
+
+            {/* Subtitle */}
+            <p className="hero-subtitle animate__animated animate__fadeInUp animate__delay-1s">
+              Discover your perfect career path in tech with comprehensive insights, trending opportunities, and
+              detailed role analysis
+            </p>
+          </div>
+
+          {/* Feature Pills */}
+          <div className="hero-features animate__animated animate__fadeInUp animate__delay-2s">
+            <div className="feature-pill">
+              <Code className="w-4 h-4" />
+              <span>Tech Roles</span>
+            </div>
+            <div className="feature-pill">
+              <TrendingUp className="w-4 h-4" />
+              <span>Market Trends</span>
+            </div>
+            <div className="feature-pill">
+              <Briefcase className="w-4 h-4" />
+              <span>Career Insights</span>
+            </div>
+          </div>
+
+          {/* CTA Button */}
+          <div className="hero-cta animate__animated animate__fadeInUp animate__delay-3s">
+            <Link to="/position/comeng" className="cta-button group">
+              <span>Explore Positions</span>
+              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </div>
+
+          {/* Stats */}
+          <div className="hero-stats animate__animated animate__fadeInUp animate__delay-4s">
+            <div className="stat-item">
+              <div className="stat-number">50+</div>
+              <div className="stat-label">Tech Roles</div>
+            </div>
+            <div className="stat-divider"></div>
+            <div className="stat-item">
+              <div className="stat-number">1000+</div>
+              <div className="stat-label">Job Insights</div>
+            </div>
+            <div className="stat-divider"></div>
+            <div className="stat-item">
+              <div className="stat-number">24/7</div>
+              <div className="stat-label">Updated Data</div>
             </div>
           </div>
         </div>
-      </section>
-      {/* <SkillBarChart /> */}
-    </>
-  );
+      </div>
+
+      {/* Scroll Indicator */}
+      <div className="scroll-indicator">
+        <div className="scroll-dot"></div>
+      </div>
+    </section>
+  )
 }
 
-export default AppMidText;
+export default AppMidText
