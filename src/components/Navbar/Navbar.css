@@ -2,156 +2,299 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ========== Base Navbar Styling ========== */
+/* ========== Modern Navbar Styling ========== */
 .navbar-container {
-  @apply fixed top-0 left-0 w-full bg-neutral-800 bg-opacity-90 backdrop-blur-sm z-50 border-b border-white border-opacity-10;
+  @apply fixed top-0 left-0 w-full z-50;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark .navbar-container {
+  background: rgba(17, 24, 39, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar-scrolled {
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.dark .navbar-scrolled {
+  background: rgba(17, 24, 39, 0.98);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
 .navbar-wrapper {
-  @apply relative flex flex-col px-4 py-[2px] mx-auto max-w-7xl;
-  @apply md:flex-row md:items-center md:justify-between md:px-6;
+  @apply relative flex items-center justify-between px-4 py-3 mx-auto max-w-7xl;
+  @apply lg:px-6;
 }
 
 /* ========== Logo Styling ========== */
-.navbar-top {
-  @apply flex items-center justify-between w-full;
-  @apply md:w-auto;
-}
-
 .navbar-logo {
-  @apply flex items-center;
+  @apply flex items-center gap-3;
 }
 
-.logo {
-  @apply h-8 w-auto transition-all duration-300 ease-in-out;
-  @apply md:h-[60px];
-  @apply translate-y-1;
+.navbar-logo:hover .logo-text {
+  @apply text-blue-600 dark:text-blue-400;
 }
 
-.logo:hover {
+.logo-image {
+  @apply h-8 w-auto transition-all duration-300 ease-out;
+  @apply lg:h-10;
+}
+
+.logo-image:hover {
   @apply scale-105;
-  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5));
+  filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.3));
 }
 
-/* ========== Mobile Toggle Button ========== */
-.mobile-menu-toggle {
-  @apply flex md:hidden text-white text-xl cursor-pointer p-2 rounded-full transition-all;
-  @apply hover:bg-neutral-700;
+.logo-text {
+  @apply hidden md:block text-xl font-bold text-gray-900 dark:text-white;
+  @apply lg:text-2xl;
+  font-family: "Inter", sans-serif;
+  letter-spacing: -0.02em;
+  transition: color 0.2s ease;
 }
 
-/* ========== Mobile Menu ========== */
-.mobile-menu {
-  @apply hidden flex-col w-full mt-4 pb-3 overflow-hidden;
-  @apply md:hidden;
-}
-
-.mobile-menu.open {
-  @apply flex;
-}
-
-.mobile-nav {
-  @apply flex flex-col items-center space-y-2;
-}
-
-.mobile-link {
-  @apply block w-full py-2 px-4 text-center text-white font-medium tracking-wide rounded-lg transition-all duration-300;
-  @apply bg-neutral-700/50 hover:bg-neutral-600 hover:shadow hover:scale-102 font-kanit;
-  transform-origin: center;
-  font-size: 0.9rem;
-}
-
-.mobile-settings {
-  @apply mt-4 flex flex-col items-center space-y-2;
-}
-
-.mobile-theme-toggle, 
-.mobile-language {
-  @apply flex items-center justify-center space-x-2 py-2 px-4 rounded-lg bg-neutral-700/70 text-white cursor-pointer transition-all duration-300;
-  @apply hover:bg-neutral-600 hover:shadow hover:scale-102;
-}
-
-.mobile-theme-toggle span, 
-.mobile-language span {
-  @apply text-xs font-medium;
+.logo-beta {
+  @apply ml-2 px-2 py-0.5 text-xs font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full;
 }
 
 /* ========== Desktop Navigation ========== */
 .desktop-nav {
-  @apply hidden md:flex items-center justify-center flex-1;
-}
-
-.desktop-nav ul {
-  @apply flex items-center space-x-1;
+  @apply hidden lg:flex items-center space-x-1;
 }
 
 .nav-link {
-  @apply block;
+  @apply relative px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 rounded-lg transition-all duration-200;
+  @apply hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800;
 }
 
-.nav-text {
-  @apply inline-block font-light text-sm text-slate-200 px-3 py-2 rounded-xl transition-all duration-300;
-  @apply hover:bg-neutral-700 hover:text-white font-kanit;
+.nav-link.active {
+  @apply text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20;
 }
 
-/* ========== Desktop Settings ========== */
-.desktop-settings {
-  @apply hidden md:flex items-center space-x-2;
+.nav-link::after {
+  content: "";
+  @apply absolute bottom-0 left-1/2 w-0 h-0.5 bg-blue-600 dark:bg-blue-400 transition-all duration-300;
+  transform: translateX(-50%);
+}
+
+.nav-link.active::after {
+  @apply w-8;
+}
+
+/* ========== Action Buttons ========== */
+.navbar-actions {
+  @apply flex items-center gap-2;
+}
+
+.action-button {
+  @apply relative p-2.5 rounded-xl transition-all duration-200;
+  @apply text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white;
+  @apply hover:bg-gray-100 dark:hover:bg-gray-800;
+}
+
+.action-button:hover {
+  transform: translateY(-1px);
 }
 
 .theme-toggle {
-  @apply p-2 cursor-pointer text-lg rounded-full transition-all hover:bg-neutral-700;
+  @apply relative overflow-hidden;
 }
 
 .theme-icon {
-  @apply text-gray-400;
+  @apply w-5 h-5 transition-all duration-300;
 }
 
-.theme-icon.active {
-  @apply text-yellow-400;
+.theme-icon.sun {
+  @apply text-yellow-500;
+  transform: rotate(0deg) scale(1);
 }
 
-.language-selector {
-  @apply px-3 py-1.5 text-sm rounded-full border border-white border-opacity-20 cursor-pointer transition-all;
-  @apply hover:bg-neutral-700 text-white font-kanit;
+.theme-icon.moon {
+  @apply text-blue-400;
+  transform: rotate(180deg) scale(1);
 }
 
-/* ========== Dark Mode ========== */
-.dark body {
-  @apply bg-neutral-900 text-white;
+.dark .theme-icon.sun {
+  transform: rotate(180deg) scale(0);
+}
+
+.dark .theme-icon.moon {
+  transform: rotate(0deg) scale(1);
+}
+
+.language-button {
+  @apply px-3 py-1.5 text-sm font-medium rounded-lg border transition-all duration-200;
+  @apply border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300;
+  @apply hover:border-blue-300 dark:hover:border-blue-600 hover:text-blue-600 dark:hover:text-blue-400;
+  @apply hover:bg-blue-50 dark:hover:bg-blue-900/20;
+}
+
+/* ========== Mobile Menu Toggle ========== */
+.mobile-toggle {
+  @apply lg:hidden p-2 rounded-lg transition-all duration-200;
+  @apply text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white;
+  @apply hover:bg-gray-100 dark:hover:bg-gray-800;
+}
+
+.hamburger {
+  @apply w-6 h-6 flex flex-col justify-center items-center;
+}
+
+.hamburger-line {
+  @apply w-5 h-0.5 bg-current transition-all duration-300 ease-out;
+}
+
+.hamburger-line:nth-child(1) {
+  @apply mb-1;
+  transform-origin: center;
+}
+
+.hamburger-line:nth-child(2) {
+  @apply mb-1;
+}
+
+.hamburger-line:nth-child(3) {
+  transform-origin: center;
+}
+
+.mobile-toggle.open .hamburger-line:nth-child(1) {
+  transform: rotate(45deg) translate(2px, 2px);
+}
+
+.mobile-toggle.open .hamburger-line:nth-child(2) {
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+.mobile-toggle.open .hamburger-line:nth-child(3) {
+  transform: rotate(-45deg) translate(2px, -2px);
+}
+
+/* ========== Mobile Menu ========== */
+.mobile-menu {
+  @apply lg:hidden absolute top-full left-0 w-full;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  transform: translateY(-100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark .mobile-menu {
+  background: rgba(17, 24, 39, 0.98);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-menu.open {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  animation: slideDown 0.3s ease-out;
+}
+
+.mobile-menu-content {
+  @apply px-4 py-6 space-y-6;
+}
+
+.mobile-nav-links {
+  @apply space-y-2;
+}
+
+.mobile-nav-link {
+  @apply block px-4 py-3 text-base font-medium text-gray-700 dark:text-gray-300 rounded-xl transition-all duration-200;
+  @apply hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800;
+  animation: fadeIn 0.4s ease-out backwards;
+}
+
+.mobile-nav-link.active {
+  @apply text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20;
+}
+
+.mobile-actions {
+  @apply flex items-center justify-center pt-4 border-t border-gray-200 dark:border-gray-700;
+}
+
+.mobile-theme-toggle {
+  @apply flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-300 rounded-xl transition-all duration-200;
+  @apply hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800;
 }
 
 /* ========== Animations ========== */
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-@keyframes slideIn {
-  from { transform: translateX(-10px); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
+.mobile-nav-link:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.mobile-nav-link:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.mobile-nav-link:nth-child(3) {
+  animation-delay: 0.2s;
+}
+.mobile-nav-link:nth-child(4) {
+  animation-delay: 0.25s;
 }
 
-.mobile-menu.open {
-  animation: fadeIn 0.3s ease-out;
+/* ========== Responsive Adjustments ========== */
+@media (max-width: 640px) {
+  .navbar-wrapper {
+    @apply px-3 py-2;
+  }
+
+  .logo-image {
+    @apply h-7;
+  }
+
+  .mobile-menu-content {
+    @apply px-3 py-4;
+  }
 }
 
-.mobile-menu.open .mobile-link {
-  animation: slideIn 0.4s ease-out backwards;
+/* ========== Accessibility ========== */
+@media (prefers-reduced-motion: reduce) {
+  .navbar-container,
+  .nav-link,
+  .action-button,
+  .mobile-menu,
+  .mobile-nav-link {
+    transition: none;
+  }
+
+  .mobile-nav-link {
+    animation: none;
+  }
 }
 
-.mobile-menu.open .mobile-link:nth-child(1) { animation-delay: 0.05s; }
-.mobile-menu.open .mobile-link:nth-child(2) { animation-delay: 0.1s; }
-.mobile-menu.open .mobile-link:nth-child(3) { animation-delay: 0.15s; }
-.mobile-menu.open .mobile-link:nth-child(4) { animation-delay: 0.2s; }
-
-.mobile-menu.open .mobile-settings > * {
-  animation: slideIn 0.4s ease-out backwards;
-}
-
-.mobile-menu.open .mobile-theme-toggle { animation-delay: 0.25s; }
-.mobile-menu.open .mobile-language { animation-delay: 0.3s; }
-
-/* Add glass effect to mobile menu */
-.mobile-menu.open {
-  @apply bg-neutral-800/30 backdrop-blur-md rounded-lg px-3 py-2 border border-white/5;
+/* ========== Focus States ========== */
+.nav-link:focus,
+.action-button:focus,
+.mobile-nav-link:focus {
+  @apply outline-none ring-2 ring-blue-500 ring-offset-2 dark:ring-offset-gray-900;
 }

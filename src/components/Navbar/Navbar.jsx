@@ -1,148 +1,182 @@
-// Navbar.jsx
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { FaRegLightbulb, FaBars, FaTimes } from 'react-icons/fa';
-import './Navbar.css';
+"use client"
+
+import { useState, useEffect } from "react"
+import { Link, useLocation } from "react-router-dom"
+import { Sun, Moon, ChevronDown, Globe, Code, BookOpen, Users, Home } from "lucide-react"
+import "./Navbar.css"
 
 function Navbar() {
-  const [lang, setLang] = useState('EN');
-  const [darkMode, setDarkMode] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [lang, setLang] = useState("EN")
+  const [darkMode, setDarkMode] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const location = useLocation()
+
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   // Check darkMode from localStorage on load
   useEffect(() => {
-    const savedMode = localStorage.getItem('darkMode');
-    if (savedMode === 'true') {
-      setDarkMode(true);
-      document.documentElement.classList.add('dark');
+    const savedMode = localStorage.getItem("darkMode")
+    if (savedMode === "true") {
+      setDarkMode(true)
+      document.documentElement.classList.add("dark")
     }
-  }, []);
+  }, [])
 
   // Prevent scrolling when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden"
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflow = ""
     }
     return () => {
-      document.body.style.overflow = '';
-    };
-  }, [mobileMenuOpen]);
+      document.body.style.overflow = ""
+    }
+  }, [mobileMenuOpen])
 
   // Toggle dark mode function
   const toggleDarkMode = () => {
     setDarkMode((prevMode) => {
-      const newMode = !prevMode;
+      const newMode = !prevMode
       if (newMode) {
-        document.documentElement.classList.add('dark');
+        document.documentElement.classList.add("dark")
       } else {
-        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.remove("dark")
       }
-      localStorage.setItem('darkMode', newMode);
-      return newMode;
-    });
-  };
+      localStorage.setItem("darkMode", newMode)
+      return newMode
+    })
+  }
 
   // Toggle language function
   const toggleLanguage = () => {
-    setLang((prevLang) => (prevLang === 'EN' ? 'TH' : 'EN'));
-  };
+    setLang((prevLang) => (prevLang === "EN" ? "TH" : "EN"))
+  }
 
   // Toggle mobile menu
   const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-  };
+    setMobileMenuOpen(!mobileMenuOpen)
+  }
 
   // Close mobile menu when clicking a nav link
   const closeMobileMenu = () => {
-    setMobileMenuOpen(false);
-  };
+    setMobileMenuOpen(false)
+  }
+
+  // Check if current path is active
+  const isActive = (path) => {
+    if (path === "/" && location.pathname === "/") return true
+    if (path !== "/" && location.pathname.startsWith(path)) return true
+    return false
+  }
+
+  const navItems = [
+    { path: "/", label: "Home", icon: <Home className="w-4 h-4" /> },
+    { path: "/position/comeng", label: "Positions", icon: <Code className="w-4 h-4" /> },
+    { path: "/learn", label: "Learn", icon: <BookOpen className="w-4 h-4" /> },
+    { path: "/contact", label: "About", icon: <Users className="w-4 h-4" /> },
+  ]
 
   return (
-    <div className="navbar-container">
+    <nav className={`navbar-container ${scrolled ? "navbar-scrolled" : ""}`}>
       <div className="navbar-wrapper">
-        {/* Logo and Mobile Toggle Section */}
-        <div className="navbar-top">
-          <div className="navbar-logo">
-            <Link to="/" onClick={closeMobileMenu}>
-              <img src="/OnlyLogoWhite.png" alt="logo" className="logo" />
-            </Link>
+        {/* Logo Section */}
+        <Link to="/" onClick={closeMobileMenu} className="navbar-logo">
+          <img
+            src={darkMode ? "/OnlyLogoWhite.png" : "/OnlyLogoBlack.png"}
+            alt="Position Explorer"
+            className="logo-image"
+          />
+          <div className="logo-text">
+            Position Explorer
+            <span className="logo-beta">Beta</span>
           </div>
-
-          {/* Mobile Menu Toggle */}
-          <div className="mobile-menu-toggle" onClick={toggleMobileMenu}>
-            {mobileMenuOpen ? <FaTimes /> : <FaBars />}
-          </div>
-        </div>
-
-        {/* Mobile Menu - Shows when hamburger is clicked */}
-        <div className={`mobile-menu ${mobileMenuOpen ? 'open' : ''}`} aria-expanded={mobileMenuOpen}>
-          <nav className="mobile-nav">
-            <Link to="/" onClick={closeMobileMenu} className="mobile-link">
-              HOME
-            </Link>
-            <Link to="/position/comeng" onClick={closeMobileMenu} className="mobile-link">
-              POSITION
-            </Link>
-            <Link to="/learn" onClick={closeMobileMenu} className="mobile-link">
-              LEARN
-            </Link>
-            <Link to="/contact" onClick={closeMobileMenu} className="mobile-link">
-              ABOUT US
-            </Link>
-          </nav>
-          
-          {/* Mobile Settings */}
-          <div className="mobile-settings">
-            <div className="mobile-theme-toggle" onClick={toggleDarkMode}>
-              <FaRegLightbulb className={`theme-icon ${darkMode ? 'active' : ''}`} />
-              <span>Toggle Theme</span>
-            </div>
-            <div className="mobile-language" onClick={toggleLanguage}>
-              <span>Language: {lang}</span>
-            </div>
-          </div>
-        </div>
+        </Link>
 
         {/* Desktop Navigation */}
-        <nav className="desktop-nav">
-          <ul>
-            <li>
-              <Link to="/" className="nav-link">
-                <span className="nav-text">HOME</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/position/comeng" className="nav-link">
-                <span className="nav-text">POSITION</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/learn" className="nav-link">
-                <span className="nav-text">LEARN</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/contact" className="nav-link">
-                <span className="nav-text">ABOUT US</span>
-              </Link>
-            </li>
-          </ul>
-        </nav>
+        <div className="desktop-nav">
+          {navItems.map((item) => (
+            <Link key={item.path} to={item.path} className={`nav-link ${isActive(item.path) ? "active" : ""}`}>
+              <span className="hidden xl:inline-flex items-center gap-2">
+                {item.icon}
+                {item.label}
+              </span>
+              <span className="xl:hidden">{item.label}</span>
+            </Link>
+          ))}
+        </div>
 
-        {/* Desktop Settings */}
-        <div className="desktop-settings">
-          <div className="theme-toggle" onClick={toggleDarkMode}>
-            <FaRegLightbulb className={`theme-icon ${darkMode ? 'active' : ''}`} />
+        {/* Desktop Actions */}
+        <div className="navbar-actions">
+          {/* Theme Toggle */}
+          <button onClick={toggleDarkMode} className="action-button theme-toggle">
+            <Sun className={`theme-icon sun ${darkMode ? "hidden" : "block"}`} />
+            <Moon className={`theme-icon moon ${darkMode ? "block" : "hidden"}`} />
+          </button>
+
+          {/* Language Toggle */}
+          <button onClick={toggleLanguage} className="language-button">
+            <Globe className="w-4 h-4 mr-1" />
+            {lang}
+            <ChevronDown className="w-3 h-3 ml-1" />
+          </button>
+
+          {/* Mobile Menu Toggle */}
+          <button onClick={toggleMobileMenu} className={`mobile-toggle ${mobileMenuOpen ? "open" : ""}`}>
+            <div className="hamburger">
+              <span className="hamburger-line"></span>
+              <span className="hamburger-line"></span>
+              <span className="hamburger-line"></span>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      <div className={`mobile-menu ${mobileMenuOpen ? "open" : ""}`}>
+        <div className="mobile-menu-content">
+          {/* Mobile Navigation Links */}
+          <div className="mobile-nav-links">
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                onClick={closeMobileMenu}
+                className={`mobile-nav-link ${isActive(item.path) ? "active" : ""}`}
+              >
+                <div className="flex items-center gap-3">
+                  {item.icon}
+                  {item.label}
+                </div>
+              </Link>
+            ))}
           </div>
-          <div className="language-selector" onClick={toggleLanguage}>
-            <span>{lang}</span>
+
+          {/* Mobile Actions */}
+          <div className="mobile-actions">
+            <button onClick={toggleDarkMode} className="mobile-theme-toggle">
+              {darkMode ? <Moon className="w-5 h-5" /> : <Sun className="w-5 h-5" />}
+              <span>{darkMode ? "Dark Mode" : "Light Mode"}</span>
+            </button>
+
+            <button onClick={toggleLanguage} className="language-button">
+              <Globe className="w-4 h-4 mr-1" />
+              {lang}
+            </button>
           </div>
         </div>
       </div>
-    </div>
-  );
+    </nav>
+  )
 }
 
-export default Navbar;
+export default Navbar
