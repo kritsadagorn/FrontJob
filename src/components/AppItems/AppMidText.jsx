@@ -4,11 +4,15 @@ import "animate.css"
 
 function AppMidText() {
   return (
-    <section className="hero-section relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Modern Minimal Particles */}
-      <div className="hero-particles-modern"></div>
-      <div className="hero-geometric-shapes"></div>
-      <div className="hero-floating-dots"></div>
+    <section className="hero-section-modern relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Modern Particle Background */}
+      <div className="particles-container">
+        <div className="particles-layer-1"></div>
+        <div className="particles-layer-2"></div>
+        <div className="particles-layer-3"></div>
+        <div className="floating-shapes"></div>
+        <div className="gradient-orbs"></div>
+      </div>
 
       {/* Content */}
       <div className="hero-content relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

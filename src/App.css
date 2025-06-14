@@ -542,6 +542,385 @@ footer {
   }
 }
 
+/* ===== MODERN PARTICLE HERO SECTION - ENHANCED MINIMAL STYLE ===== */
+.hero-section-modern {
+  @apply relative min-h-screen flex items-center justify-center;
+  background: linear-gradient(135deg, #fafafa 0%, #ffffff 100%);
+  overflow: hidden;
+}
+
+.dark .hero-section-modern {
+  background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%);
+}
+
+/* Particles Container */
+.particles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+}
+
+/* Enhanced Particle Layer 1 - Small floating dots with more variety */
+.particles-layer-1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(circle at 20% 20%, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+    radial-gradient(circle at 80% 80%, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at 40% 60%, rgba(0, 0, 0, 0.035) 1px, transparent 1px),
+    radial-gradient(circle at 60% 30%, rgba(0, 0, 0, 0.025) 1px, transparent 1px),
+    radial-gradient(circle at 90% 40%, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    radial-gradient(circle at 10% 70%, rgba(0, 0, 0, 0.02) 0.5px, transparent 0.5px),
+    radial-gradient(circle at 70% 10%, rgba(0, 0, 0, 0.015) 0.5px, transparent 0.5px);
+  background-size: 200px 200px, 300px 300px, 150px 150px, 250px 250px, 180px 180px, 120px 120px, 160px 160px;
+  animation: particleFloat1 20s ease-in-out infinite;
+}
+
+/* Enhanced Particle Layer 2 - Medium particles with subtle grid pattern */
+.particles-layer-2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(circle at 10% 50%, rgba(0, 0, 0, 0.02) 2px, transparent 2px),
+    radial-gradient(circle at 70% 20%, rgba(0, 0, 0, 0.015) 2px, transparent 2px),
+    radial-gradient(circle at 30% 80%, rgba(0, 0, 0, 0.025) 2px, transparent 2px),
+    radial-gradient(circle at 85% 70%, rgba(0, 0, 0, 0.018) 2px, transparent 2px),
+    linear-gradient(90deg, transparent 49%, rgba(0, 0, 0, 0.003) 50%, transparent 51%),
+    linear-gradient(0deg, transparent 49%, rgba(0, 0, 0, 0.003) 50%, transparent 51%);
+  background-size: 400px 400px, 350px 350px, 280px 280px, 320px 320px, 80px 80px, 80px 80px;
+  animation: particleFloat2 25s ease-in-out infinite reverse;
+}
+
+/* Enhanced Particle Layer 3 - Large subtle particles with noise texture */
+.particles-layer-3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(circle at 50% 10%, rgba(0, 0, 0, 0.012) 3px, transparent 3px),
+    radial-gradient(circle at 20% 70%, rgba(0, 0, 0, 0.008) 3px, transparent 3px),
+    radial-gradient(circle at 80% 50%, rgba(0, 0, 0, 0.015) 3px, transparent 3px),
+    radial-gradient(circle at 15% 25%, rgba(0, 0, 0, 0.005) 1px, transparent 1px),
+    radial-gradient(circle at 85% 75%, rgba(0, 0, 0, 0.005) 1px, transparent 1px);
+  background-size: 500px 500px, 450px 450px, 380px 380px, 60px 60px, 60px 60px;
+  animation: particleFloat3 30s ease-in-out infinite;
+}
+
+/* Enhanced Floating Shapes with more complexity */
+.floating-shapes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(
+      45deg,
+      transparent 48%,
+      rgba(0, 0, 0, 0.008) 49%,
+      rgba(0, 0, 0, 0.008) 51%,
+      transparent 52%
+    ), linear-gradient(-45deg, transparent 48%, rgba(0, 0, 0, 0.008) 49%, rgba(0, 0, 0, 0.008) 51%, transparent 52%),
+    linear-gradient(30deg, transparent 49.5%, rgba(0, 0, 0, 0.004) 50%, transparent 50.5%),
+    linear-gradient(-30deg, transparent 49.5%, rgba(0, 0, 0, 0.004) 50%, transparent 50.5%);
+  background-size: 300px 300px, 250px 250px, 180px 180px, 200px 200px;
+  animation: shapeFloat 35s linear infinite;
+}
+
+/* Enhanced Gradient Orbs with subtle pulsing */
+.gradient-orbs::before,
+.gradient-orbs::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  opacity: 0.04;
+  animation: orbFloat 20s ease-in-out infinite;
+}
+
+.gradient-orbs::before {
+  top: 20%;
+  left: 10%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.15) 0%, transparent 70%);
+  animation-delay: -10s;
+}
+
+.gradient-orbs::after {
+  bottom: 20%;
+  right: 10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.12) 0%, transparent 70%);
+}
+
+/* Add subtle texture overlay */
+.particles-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(circle at 25% 25%, rgba(0, 0, 0, 0.002) 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, rgba(0, 0, 0, 0.002) 1px, transparent 1px);
+  background-size: 40px 40px, 60px 60px;
+  animation: textureFloat 40s linear infinite;
+  opacity: 0.6;
+}
+
+/* Dark mode particles - Enhanced with more variety */
+.dark .particles-layer-1 {
+  background-image: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    radial-gradient(circle at 40% 60%, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    radial-gradient(circle at 60% 30%, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    radial-gradient(circle at 90% 40%, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    radial-gradient(circle at 10% 70%, rgba(255, 255, 255, 0.025) 0.5px, transparent 0.5px),
+    radial-gradient(circle at 70% 10%, rgba(255, 255, 255, 0.02) 0.5px, transparent 0.5px);
+}
+
+.dark .particles-layer-2 {
+  background-image: radial-gradient(circle at 10% 50%, rgba(255, 255, 255, 0.025) 2px, transparent 2px),
+    radial-gradient(circle at 70% 20%, rgba(255, 255, 255, 0.02) 2px, transparent 2px),
+    radial-gradient(circle at 30% 80%, rgba(255, 255, 255, 0.03) 2px, transparent 2px),
+    radial-gradient(circle at 85% 70%, rgba(255, 255, 255, 0.022) 2px, transparent 2px),
+    linear-gradient(90deg, transparent 49%, rgba(255, 255, 255, 0.004) 50%, transparent 51%),
+    linear-gradient(0deg, transparent 49%, rgba(255, 255, 255, 0.004) 50%, transparent 51%);
+}
+
+.dark .particles-layer-3 {
+  background-image: radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.015) 3px, transparent 3px),
+    radial-gradient(circle at 20% 70%, rgba(255, 255, 255, 0.01) 3px, transparent 3px),
+    radial-gradient(circle at 80% 50%, rgba(255, 255, 255, 0.018) 3px, transparent 3px),
+    radial-gradient(circle at 15% 25%, rgba(255, 255, 255, 0.006) 1px, transparent 1px),
+    radial-gradient(circle at 85% 75%, rgba(255, 255, 255, 0.006) 1px, transparent 1px);
+}
+
+.dark .floating-shapes {
+  background-image: linear-gradient(
+      45deg,
+      transparent 48%,
+      rgba(255, 255, 255, 0.01) 49%,
+      rgba(255, 255, 255, 0.01) 51%,
+      transparent 52%
+    ),
+    linear-gradient(
+      -45deg,
+      transparent 48%,
+      rgba(255, 255, 255, 0.01) 49%,
+      rgba(255, 255, 255, 0.01) 51%,
+      transparent 52%
+    ), linear-gradient(30deg, transparent 49.5%, rgba(255, 255, 255, 0.005) 50%, transparent 50.5%),
+    linear-gradient(-30deg, transparent 49.5%, rgba(255, 255, 255, 0.005) 50%, transparent 50.5%);
+}
+
+.dark .gradient-orbs::before {
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+}
+
+.dark .gradient-orbs::after {
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.06) 0%, transparent 70%);
+}
+
+.dark .particles-container::after {
+  background-image: radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.003) 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.003) 1px, transparent 1px);
+}
+
+/* Enhanced Animations */
+@keyframes particleFloat1 {
+  0%,
+  100% {
+    transform: translateX(0) translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateX(20px) translateY(-10px) rotate(90deg);
+  }
+  50% {
+    transform: translateX(-10px) translateY(-20px) rotate(180deg);
+  }
+  75% {
+    transform: translateX(-20px) translateY(10px) rotate(270deg);
+  }
+}
+
+@keyframes particleFloat2 {
+  0%,
+  100% {
+    transform: translateX(0) translateY(0) scale(1);
+  }
+  33% {
+    transform: translateX(-15px) translateY(-15px) scale(1.05);
+  }
+  66% {
+    transform: translateX(15px) translateY(15px) scale(0.95);
+  }
+}
+
+@keyframes particleFloat3 {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translateY(-30px) rotate(180deg) scale(1.02);
+  }
+}
+
+@keyframes shapeFloat {
+  0% {
+    transform: translateX(-100px) rotate(0deg);
+  }
+  100% {
+    transform: translateX(100px) rotate(360deg);
+  }
+}
+
+@keyframes orbFloat {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.04;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.1);
+    opacity: 0.06;
+  }
+}
+
+@keyframes textureFloat {
+  0% {
+    transform: translateX(-20px) translateY(-20px);
+  }
+  100% {
+    transform: translateX(20px) translateY(20px);
+  }
+}
+
+/* Content styling - Matching other components */
+.hero-section-modern .hero-content {
+  text-align: center;
+  color: #333333;
+}
+
+.dark .hero-section-modern .hero-content {
+  color: #ffffff;
+}
+
+.hero-section-modern .hero-title-accent {
+  @apply text-gray-600;
+}
+
+.dark .hero-section-modern .hero-title-accent {
+  @apply text-gray-300;
+}
+
+.hero-section-modern .hero-title-main {
+  @apply text-gray-900;
+}
+
+.dark .hero-section-modern .hero-title-main {
+  @apply text-white;
+}
+
+.hero-section-modern .hero-subtitle {
+  color: #666666;
+}
+
+.dark .hero-section-modern .hero-subtitle {
+  color: #cccccc;
+}
+
+.hero-section-modern .feature-pill {
+  background: rgba(0, 0, 0, 0.06);
+  color: #666666;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(2px);
+}
+
+.dark .hero-section-modern .feature-pill {
+  background: rgba(255, 255, 255, 0.12);
+  color: #cccccc;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.hero-section-modern .cta-button {
+  background: #333333;
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dark .hero-section-modern .cta-button {
+  background: #ffffff;
+  color: #333333;
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+}
+
+.hero-section-modern .cta-button:hover {
+  background: #000000;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.dark .hero-section-modern .cta-button:hover {
+  background: #f0f0f0;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.15);
+}
+
+.hero-section-modern .stat-number {
+  color: #333333;
+}
+
+.dark .hero-section-modern .stat-number {
+  color: #ffffff;
+}
+
+.hero-section-modern .stat-label {
+  color: #666666;
+}
+
+.dark .hero-section-modern .stat-label {
+  color: #cccccc;
+}
+
+.hero-section-modern .stat-divider {
+  @apply bg-gray-300;
+}
+
+.dark .hero-section-modern .stat-divider {
+  @apply bg-gray-600;
+}
+
+.hero-section-modern .scroll-dot {
+  @apply border-gray-400;
+}
+
+.hero-section-modern .scroll-dot::before {
+  @apply bg-gray-400;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .particles-layer-1,
+  .particles-layer-2,
+  .particles-layer-3,
+  .floating-shapes,
+  .gradient-orbs::before,
+  .gradient-orbs::after,
+  .particles-container::after {
+    animation: none;
+  }
+}
+
 /* ===== MINIMAL TECH SHOWCASE ===== */
 .tech-showcase-section {
   @apply bg-white py-16;
