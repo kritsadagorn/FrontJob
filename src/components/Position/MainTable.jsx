@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
-import { ArrowDown, ExternalLink, Filter, Search } from "lucide-react"
+import { ArrowDown, ExternalLink, Filter, Search, TrendingUp, TrendingDown, Minus } from "lucide-react"
 import Tippy from "@tippyjs/react"
 import "tippy.js/dist/tippy.css"
 
@@ -55,25 +55,38 @@ const MainTable = ({ currentPage, handlePageChange, data, trendingSort, onTrendi
     }
   }
 
-  const getTrendingClass = (trending) => {
+  const getTrendingConfig = (trending) => {
     switch (trending) {
       case "PEAK":
-        return "border-green-200 bg-green-100 text-green-800 dark:border-green-400 dark:bg-green-900/30 dark:text-green-300"
-      case "AVERAGE":
-        return "border-yellow-200 bg-yellow-100 text-yellow-800 dark:border-yellow-400 dark:bg-yellow-900/30 dark:text-yellow-300"
+        return {
+          icon: <TrendingUp className="w-4 h-4" />,
+          className:
+            "bg-gradient-to-r from-green-500 to-emerald-600 text-white border-green-500 shadow-lg shadow-green-500/25",
+          label: "Peak",
+        }
       case "WEAK":
-        return "border-red-200 bg-red-100 text-red-800 dark:border-red-400 dark:bg-red-900/30 dark:text-red-300"
+        return {
+          icon: <TrendingDown className="w-4 h-4" />,
+          className: "bg-gradient-to-r from-red-500 to-rose-600 text-white border-red-500 shadow-lg shadow-red-500/25",
+          label: "Weak",
+        }
+      case "AVERAGE":
       default:
-        return "border-stone-200 bg-stone-100 text-stone-800 dark:border-stone-400 dark:bg-stone-800/30 dark:text-stone-300"
+        return {
+          icon: <Minus className="w-4 h-4" />,
+          className:
+            "bg-gradient-to-r from-yellow-500 to-amber-600 text-white border-yellow-500 shadow-lg shadow-yellow-500/25",
+          label: "Average",
+        }
     }
   }
 
   console.log("MainTable render - data:", data, "length:", data?.length) // Debug log
 
   return (
-    <div className="table-container h-full flex flex-col">
+    <div className="h-full flex flex-col">
       {/* Header Section */}
-      <div className="table-header bg-white/90 dark:bg-stone-800/90 backdrop-blur-md p-4 md:p-6 border-b border-stone-200/50 dark:border-stone-700/50 flex-shrink-0">
+      <div className="flex-shrink-0 bg-white/90 dark:bg-stone-800/90 backdrop-blur-md p-4 md:p-6 border-b border-stone-200/50 dark:border-stone-700/50">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
             <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-stone-900 dark:text-stone-100 tracking-tight">
@@ -86,7 +99,7 @@ const MainTable = ({ currentPage, handlePageChange, data, trendingSort, onTrendi
 
           {/* Active Filter Display */}
           {name && (
-            <div className="flex items-center gap-2 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 border border-green-300 dark:border-green-600 rounded-full px-4 py-2 text-sm font-medium shadow-sm">
+            <div className="flex items-center gap-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full px-4 py-2 text-sm font-medium shadow-lg shadow-blue-500/25">
               <Filter className="w-4 h-4" />
               <span className="font-semibold">{name}</span>
               <button
@@ -94,7 +107,7 @@ const MainTable = ({ currentPage, handlePageChange, data, trendingSort, onTrendi
                   setName("")
                   onLanguageSelected("")
                 }}
-                className="ml-2 bg-red-500 hover:bg-red-600 text-white px-2 py-0.5 rounded-full transition-all duration-200 text-xs shadow hover:shadow-md"
+                className="ml-2 bg-white/20 hover:bg-white/30 text-white px-2 py-0.5 rounded-full transition-all duration-200 text-xs"
                 title="Clear Focus"
               >
                 ✕
@@ -105,7 +118,7 @@ const MainTable = ({ currentPage, handlePageChange, data, trendingSort, onTrendi
       </div>
 
       {/* Table Container */}
-      <div className="table-body-container bg-white/80 dark:bg-stone-800/80 backdrop-blur-sm flex-1 overflow-hidden">
+      <div className="flex-1 bg-white/80 dark:bg-stone-800/80 backdrop-blur-sm overflow-hidden">
         <div className="h-full overflow-auto custom-scrollbar">
           <table className="w-full border-collapse min-w-full">
             {/* Table Header */}
@@ -144,7 +157,7 @@ const MainTable = ({ currentPage, handlePageChange, data, trendingSort, onTrendi
               {data && data.length > 0 ? (
                 data.map((row, index) => {
                   const rowNumber = currentPage * 10 + index + 1
-                  const trendClass = getTrendingClass(row.trending)
+                  const trendingConfig = getTrendingConfig(row.trending)
                   const skillsToShow = getSkillsToShow()
 
                   return (
@@ -169,9 +182,12 @@ const MainTable = ({ currentPage, handlePageChange, data, trendingSort, onTrendi
                           </button>
                           {/* Mobile trending badge */}
                           <div className="md:hidden mt-2">
-                            <span className={`${trendClass} rounded-full px-3 py-1 border text-xs font-medium`}>
-                              {row.trending}
-                            </span>
+                            <div
+                              className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium ${trendingConfig.className}`}
+                            >
+                              {trendingConfig.icon}
+                              {trendingConfig.label}
+                            </div>
                           </div>
                         </div>
                       </td>
@@ -227,11 +243,12 @@ const MainTable = ({ currentPage, handlePageChange, data, trendingSort, onTrendi
 
                       {/* Trending */}
                       <td className="hidden md:table-cell py-4 px-4 text-center">
-                        <span
-                          className={`${trendClass} rounded-full px-4 py-2 border font-medium text-sm whitespace-nowrap`}
+                        <div
+                          className={`inline-flex items-center gap-2 px-4 py-2 rounded-full font-medium text-sm whitespace-nowrap ${trendingConfig.className}`}
                         >
-                          {row.trending}
-                        </span>
+                          {trendingConfig.icon}
+                          {trendingConfig.label}
+                        </div>
                       </td>
                     </tr>
                   )
@@ -259,7 +276,7 @@ const MainTable = ({ currentPage, handlePageChange, data, trendingSort, onTrendi
       </div>
 
       {/* Footer with Stats */}
-      <div className="table-footer bg-white/90 dark:bg-stone-800/90 backdrop-blur-md p-4 border-t border-stone-200/50 dark:border-stone-700/50 flex-shrink-0">
+      <div className="flex-shrink-0 bg-white/90 dark:bg-stone-800/90 backdrop-blur-md p-4 border-t border-stone-200/50 dark:border-stone-700/50">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 text-sm text-stone-600 dark:text-stone-400">
           <div>
             Showing {data?.length || 0} position{data?.length !== 1 ? "s" : ""}
@@ -271,15 +288,15 @@ const MainTable = ({ currentPage, handlePageChange, data, trendingSort, onTrendi
           </div>
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-green-100 border border-green-300 rounded-full"></div>
+              <div className="w-3 h-3 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full shadow-sm"></div>
               <span>Peak</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-yellow-100 border border-yellow-300 rounded-full"></div>
+              <div className="w-3 h-3 bg-gradient-to-r from-yellow-500 to-amber-600 rounded-full shadow-sm"></div>
               <span>Average</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-red-100 border border-red-300 rounded-full"></div>
+              <div className="w-3 h-3 bg-gradient-to-r from-red-500 to-rose-600 rounded-full shadow-sm"></div>
               <span>Weak</span>
             </div>
           </div>

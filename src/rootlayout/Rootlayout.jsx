@@ -10,7 +10,7 @@ export default function Rootlayout() {
       <div className="h-full">
         <Outlet></Outlet>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

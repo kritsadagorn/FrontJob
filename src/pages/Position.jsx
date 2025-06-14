@@ -102,10 +102,10 @@ function Position() {
         </div>
 
         {/* Content - Fixed sizes for different resolutions */}
-        <div className="relative z-10 pt-[70px] md:pt-[80px] pb-8">
-          <div className="position-container bg-white/80 dark:bg-stone-900/80 backdrop-blur-sm flex flex-col lg:flex-row rounded-xl shadow-lg border border-white/20 dark:border-stone-700/50">
-            {/* Sidebar Filter - Fixed widths */}
-            <div className="filter-sidebar flex-shrink-0">
+        <div className="relative z-10 pt-[70px] md:pt-[80px] pb-8 px-4">
+          <div className="position-container bg-white/80 dark:bg-stone-900/80 backdrop-blur-sm rounded-xl shadow-lg border border-white/20 dark:border-stone-700/50 flex flex-col lg:flex-row h-[calc(100vh-160px)] max-w-[calc(100vw-32px)] mx-auto">
+            {/* Sidebar Filter */}
+            <div className="filter-sidebar w-full lg:w-80 flex-shrink-0 h-auto lg:h-full">
               <Filter
                 onFilterUpdate={(data) => {
                   setFilter((p) => ({
@@ -117,39 +117,43 @@ function Position() {
               />
             </div>
 
-            {/* Main Table Section - Takes remaining space */}
-            <div className="table-section flex flex-col flex-1 min-w-0">
+            {/* Main Table Section */}
+            <div className="table-section flex-1 flex flex-col min-w-0 h-full">
               {loading ? (
-                <div className="flex items-center justify-center h-96">
+                <div className="flex items-center justify-center h-full">
                   <div className="text-center">
                     <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500 mx-auto mb-4"></div>
                     <p className="text-stone-600 dark:text-stone-400">Loading positions...</p>
                   </div>
                 </div>
               ) : (
-                <>
-                  <MainTable
-                    // Sort trending function
-                    onTrendingSortToggle={() => {
-                      setFilter((p) => ({
-                        ...p,
-                        trendingSort: p.trendingSort === "asc" ? "desc" : "asc",
-                        is_updated: true,
-                      }))
-                    }}
-                    trendingSort={filter.trendingSort}
-                    data={data}
-                    currentPage={page}
-                    handlePageChange={handlePageChange}
-                    onLanguageSelected={(val) => {
-                      setSelectedProgramLanguage(val)
-                    }}
-                  />
+                <div className="flex flex-col h-full">
+                  <div className="flex-1 min-h-0">
+                    <MainTable
+                      // Sort trending function
+                      onTrendingSortToggle={() => {
+                        setFilter((p) => ({
+                          ...p,
+                          trendingSort: p.trendingSort === "asc" ? "desc" : "asc",
+                          is_updated: true,
+                        }))
+                      }}
+                      trendingSort={filter.trendingSort}
+                      data={data}
+                      currentPage={page}
+                      handlePageChange={handlePageChange}
+                      onLanguageSelected={(val) => {
+                        setSelectedProgramLanguage(val)
+                      }}
+                    />
+                  </div>
                   {/* Pagination */}
                   {pageTotal > 0 && (
-                    <Pagination currentPage={page} totalPages={pageTotal} handlePageChange={handlePageChange} />
+                    <div className="flex-shrink-0">
+                      <Pagination currentPage={page} totalPages={pageTotal} handlePageChange={handlePageChange} />
+                    </div>
                   )}
-                </>
+                </div>
               )}
             </div>
           </div>
