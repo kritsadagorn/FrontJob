@@ -5,6 +5,7 @@ import { AppMidText, AppBox, DescApp, Promote, Footer } from "./components";
 import Position from "./pages/Position";
 import PosDetail from "./pages/Pos-Detail";
 import SkillBarChart from "../src/components/AppItems/SkillBarChart";
+import "../src/components/AppItems/component-theme.css"
 
 const App = () => {
   return (

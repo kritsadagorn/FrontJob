@@ -18,9 +18,7 @@ const darkHoverColor = "#fff";
 function CustomTooltip({ active, payload, label }) {
   if (active && payload && payload.length) {
     return (
-      <div
-        className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 p-2.5 rounded-lg shadow-lg"
-      >
+      <div className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 p-2.5 rounded-lg shadow-lg">
         <p className="m-0 font-bold text-gray-900 dark:text-white">{label}</p>
         <p className="m-0 text-gray-700 dark:text-gray-300">
           <span className="text-blue-500 dark:text-blue-400">Skill Trending: </span>
@@ -29,7 +27,6 @@ function CustomTooltip({ active, payload, label }) {
       </div>
     );
   }
-
   return null;
 }
 
@@ -62,6 +59,15 @@ function SkillBarChart() {
         setSkills(data.slice(0, 6));
       } catch (error) {
         console.error("Error fetching skills:", error);
+        // Fallback data for testing
+        setSkills([
+          { skill: "React", score: 85 },
+          { skill: "Node.js", score: 78 },
+          { skill: "Python", score: 92 },
+          { skill: "JavaScript", score: 88 },
+          { skill: "CSS", score: 75 },
+          { skill: "MongoDB", score: 70 }
+        ]);
       }
     };
 
@@ -73,69 +79,134 @@ function SkillBarChart() {
   const currentColors = isDark ? darkColors : colors;
   const currentHoverColor = isDark ? darkHoverColor : hoverColor;
 
+  // Don't render if no skills data
+  if (!skills || skills.length === 0) {
+    return null;
+  }
+
   return (
-    <div
-      className="absolute"
-      style={{
+    <>
+      {/* Mobile: Chart below the section */}
+      <div className="block lg:hidden w-full mt-8 px-4">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-4">
+          <h3 className="text-lg font-semibold mb-4 text-gray-800 dark:text-white text-center">
+            Skill Trends
+          </h3>
+          <div style={{ width: "100%", height: "250px" }}>
+            <ResponsiveContainer width="100%" height="80%">
+              <BarChart
+                data={skills}
+                margin={{ top: 20, right: 30, left: 20, bottom: 60 }}
+                onMouseLeave={() => setActiveIndex(-1)}
+              >
+                <CartesianGrid 
+                  strokeDasharray="4 4" 
+                  stroke={isDark ? "#6b7280" : "#f0f0f0"} 
+                />
+                <XAxis
+                  dataKey="skill"
+                  tick={{ 
+                    fill: isDark ? "#f3f4f6" : "#6b6b6b", 
+                    fontSize: 10 
+                  }}
+                  axisLine={{ stroke: isDark ? "#9ca3af" : "#ccc" }}
+                  tickLine={false}
+                  angle={-45}
+                  textAnchor="end"
+                  height={60}
+                />
+                <YAxis
+                  tick={{ 
+                    fill: isDark ? "#f3f4f6" : "#6b6b6b", 
+                    fontSize: 10 
+                  }}
+                  axisLine={{ stroke: isDark ? "#9ca3af" : "#ccc" }}
+                  tickLine={false}
+                />
+                <Tooltip content={<CustomTooltip />} />
+                <Bar
+                  dataKey="score"
+                  animationDuration={800}
+                  radius={[4, 4, 0, 0]}
+                  onMouseOver={(_, index) => setActiveIndex(index)}
+                >
+                  {skills.map((_, index) => (
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={activeIndex === index ? currentHoverColor : currentColors[index % currentColors.length]}
+                      style={{
+                        transition: "transform 0.2s",
+                        transform: activeIndex === index ? "scale(1.05)" : "scale(1)",
+                      }}
+                    />
+                  ))}
+                </Bar>
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop: Chart overlaid on laptop screen */}
+      <div className="hidden lg:block absolute" style={{
         top: "32.5%",
-        left: "72.5%",
+        left: "72.5%", 
         width: "28%",
         height: "45%",
-      }}
-    >
-      <div
-        className="absolute right-0 top-1/2 transform -translate-y-1/2 -mr-14 pr-32 -mt-28"
-        style={{ width: "180%", height: "350px" }}
-      >
-        <ResponsiveContainer width="84.9%" height="110%">
-          <BarChart
-            data={skills}
-            margin={{ top: 20, right: 30, left: 10, bottom: 20 }}
-            onMouseLeave={() => setActiveIndex(-1)}
-          >
-            <CartesianGrid 
-              strokeDasharray="4 4" 
-              stroke={isDark ? "#6b7280" : "#f0f0f0"} 
-            />
-            <XAxis
-              dataKey="skill"
-              tick={{ 
-                fill: isDark ? "#f3f4f6" : "#6b6b6b", 
-                fontSize: 12 
-              }}
-              axisLine={{ stroke: isDark ? "#9ca3af" : "#ccc" }}
-              tickLine={false}
-            />
-            <YAxis
-              tick={{ 
-                fill: isDark ? "#f3f4f6" : "#6b6b6b", 
-                fontSize: 12 
-              }}
-              axisLine={{ stroke: isDark ? "#9ca3af" : "#ccc" }}
-              tickLine={false}
-            />
-            <Tooltip content={<CustomTooltip />} />
-            <Bar
-              dataKey="score"
-              animationDuration={800}
-              radius={[6, 6, 0, 0]}
-              onMouseOver={(_, index) => setActiveIndex(index)}
+        zIndex: 10
+      }}>
+        <div className="absolute right-0 top-1/2 transform -translate-y-1/2 -mr-14 pr-32 -mt-28" 
+             style={{ width: "180%", height: "250px" }}>
+          <ResponsiveContainer width="84.9%" height="80%">
+            <BarChart
+              data={skills}
+              margin={{ top: 20, right: 30, left: 10, bottom: 20 }}
+              onMouseLeave={() => setActiveIndex(-1)}
             >
-              {skills.map((_, index) => (
-                <Cell
-                  key={`cell-${index}`}
-                  fill={activeIndex === index ? currentHoverColor : currentColors[index % currentColors.length]}
-                  style={{
-                    transition: "transform 0.2s",
-                    transform: activeIndex === index ? "scale(1.05)" : "scale(1)",
-                  }}
-                />
-              ))}
-            </Bar>
-          </BarChart>
-        </ResponsiveContainer>
+              <CartesianGrid 
+                strokeDasharray="4 4" 
+                stroke={isDark ? "#6b7280" : "#f0f0f0"} 
+              />
+              <XAxis
+                dataKey="skill"
+                tick={{ 
+                  fill: isDark ? "#f3f4f6" : "#6b6b6b", 
+                  fontSize: 12 
+                }}
+                axisLine={{ stroke: isDark ? "#9ca3af" : "#ccc" }}
+                tickLine={false}
+              />
+              <YAxis
+                tick={{ 
+                  fill: isDark ? "#f3f4f6" : "#6b6b6b", 
+                  fontSize: 12 
+                }}
+                axisLine={{ stroke: isDark ? "#9ca3af" : "#ccc" }}
+                tickLine={false}
+              />
+              <Tooltip content={<CustomTooltip />} />
+              <Bar
+                dataKey="score"
+                animationDuration={800}
+                radius={[6, 6, 0, 0]}
+                onMouseOver={(_, index) => setActiveIndex(index)}
+              >
+                {skills.map((_, index) => (
+                  <Cell
+                    key={`cell-${index}`}
+                    fill={activeIndex === index ? currentHoverColor : currentColors[index % currentColors.length]}
+                    style={{
+                      transition: "transform 0.2s",
+                      transform: activeIndex === index ? "scale(1.05)" : "scale(1)",
+                    }}
+                  />
+                ))}
+              </Bar>
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

@@ -1,29 +1,31 @@
-import React, { useEffect } from "react";
-import "./DescApp.css";
-import { Typewriter } from 'react-simple-typewriter'
+import { Typewriter } from "react-simple-typewriter"
 
 function DescApp() {
   return (
-    <section className="section3 flex justify-center items-center px-4">
-      <div className="flex flex-wrap justify-around items-center">
-        <div className="desc-container">
-          <div className="desc-bg">
-            <span>
-              <Typewriter 
-              words={['Unlock your potential, explore endless career possibilities']}
-              typeSpeed={70}
-              deleteSpeed={0}
-              delaySpeed={5000}
-              cursor
-              loop={true}
+    <section className="desc-section relative flex justify-center items-center px-4 py-12 overflow-hidden">
+      {/* Background patterns */}
+      <div className="desc-bg-pattern"></div>
+      <div className="desc-particles"></div>
+
+      <div className="desc-container relative z-10">
+        <div className="desc-content">
+          <div className="desc-text-wrapper">
+            <span className="desc-text">
+              <Typewriter
+                words={["Unlock your potential, explore endless career possibilities"]}
+                typeSpeed={70}
+                deleteSpeed={0}
+                delaySpeed={5000}
+                cursor
+                loop={true}
               />
             </span>
           </div>
-          <div className="animate-border"></div>
+          <div className="desc-animated-border"></div>
         </div>
       </div>
     </section>
-  );
+  )
 }
 
-export default DescApp;
+export default DescApp

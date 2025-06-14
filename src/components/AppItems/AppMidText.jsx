@@ -1,17 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "animate.css";
-import ScreenImage2 from "../../assets/Chart4.png";
 import SkillBarChart from "./SkillBarChart";
 
 function AppMidText() {
   return (
     <>
-      <section className="section1 relative bg-[url('/backgroundMain2.jpg')] dark:bg-[url('/backgroundMain3.jpg')] transition-all duration-500 ease-in-out">
+      <section className="section1 relative transition-all duration-500 ease-in-out">
         <div className="App-topic">
           <div className="AppMidText-container">
             <div>
-              <div className="web-topic topic-animate relative">
+              <div className="web-topic topic-animate relative mt-8">
                 <h1 className="topicText">~position</h1>
                 <h1 className="topicText">explorer</h1>
                 <div className="subText mt-4">
@@ -21,7 +20,7 @@ function AppMidText() {
                     insights.
                   </span>
                 </div>
-                <div className="linkText mt-4">
+                <div className="hidden xl:block linkText mt-8">
                   <Link to="/position/comeng">
                     searching for computer engineer roles
                   </Link>
@@ -31,7 +30,7 @@ function AppMidText() {
           </div>
         </div>
       </section>
-      <SkillBarChart />
+      {/* <SkillBarChart /> */}
     </>
   );
 }

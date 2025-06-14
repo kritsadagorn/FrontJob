@@ -6,27 +6,124 @@ body {
   overflow-x: hidden;
 }
 
-/* Enhanced responsive section styling */
+/* Enhanced responsive section styling with computer engineering backgrounds */
 .section1 {
   @apply h-screen w-screen bg-no-repeat bg-cover bg-center overflow-hidden flex items-center;
-  @apply dark:bg-gray-900;
   background-attachment: scroll;
-  box-shadow: inset 7px -43px 47px -59px rgba(0,0,0,0.34);
-  
+  box-shadow: inset 7px -43px 47px -59px rgba(0, 0, 0, 0.34);
+
+  /* Light theme - subtle circuit pattern with gradient */
+  background: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(120, 219, 226, 0.1) 0%, transparent 50%),
+    linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23e2e8f0' fill-opacity='0.3'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+
   /* Better background positioning for mobile */
   @screen sm {
     background-position: center center;
   }
-  
+
   @screen lg {
     background-position: center center;
+  }
+}
+
+/* Dark theme background */
+.dark .section1 {
+  background: radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(147, 51, 234, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
+    linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%),
+    url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23334155' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Alternative circuit board pattern for variety */
+.section1::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.1;
+  background-image: linear-gradient(
+      90deg,
+      transparent 79px,
+      rgba(59, 130, 246, 0.3) 79px,
+      rgba(59, 130, 246, 0.3) 81px,
+      transparent 81px
+    ), linear-gradient(transparent 79px, rgba(59, 130, 246, 0.3) 79px, rgba(59, 130, 246, 0.3) 81px, transparent 81px),
+    linear-gradient(
+      90deg,
+      transparent 19px,
+      rgba(147, 51, 234, 0.2) 19px,
+      rgba(147, 51, 234, 0.2) 21px,
+      transparent 21px
+    ), linear-gradient(transparent 19px, rgba(147, 51, 234, 0.2) 19px, rgba(147, 51, 234, 0.2) 21px, transparent 21px);
+  background-size: 80px 80px, 80px 80px, 20px 20px, 20px 20px;
+  pointer-events: none;
+}
+
+.dark .section1::before {
+  background-image: linear-gradient(
+      90deg,
+      transparent 79px,
+      rgba(34, 197, 94, 0.2) 79px,
+      rgba(34, 197, 94, 0.2) 81px,
+      transparent 81px
+    ), linear-gradient(transparent 79px, rgba(34, 197, 94, 0.2) 79px, rgba(34, 197, 94, 0.2) 81px, transparent 81px),
+    linear-gradient(
+      90deg,
+      transparent 19px,
+      rgba(59, 130, 246, 0.15) 19px,
+      rgba(59, 130, 246, 0.15) 21px,
+      transparent 21px
+    ), linear-gradient(transparent 19px, rgba(59, 130, 246, 0.15) 19px, rgba(59, 130, 246, 0.15) 21px, transparent 21px);
+}
+
+/* Floating particles effect */
+.section1::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(2px 2px at 20px 30px, rgba(59, 130, 246, 0.4), transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(147, 51, 234, 0.3), transparent),
+    radial-gradient(1px 1px at 90px 40px, rgba(34, 197, 94, 0.4), transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(59, 130, 246, 0.3), transparent),
+    radial-gradient(2px 2px at 160px 30px, rgba(147, 51, 234, 0.2), transparent);
+  background-repeat: repeat;
+  background-size: 200px 100px;
+  animation: float 20s linear infinite;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.dark .section1::after {
+  background-image: radial-gradient(2px 2px at 20px 30px, rgba(34, 197, 94, 0.3), transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(59, 130, 246, 0.2), transparent),
+    radial-gradient(1px 1px at 90px 40px, rgba(147, 51, 234, 0.3), transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(34, 197, 94, 0.2), transparent),
+    radial-gradient(2px 2px at 160px 30px, rgba(59, 130, 246, 0.15), transparent);
+  opacity: 0.4;
+}
+
+@keyframes float {
+  0% {
+    transform: translateX(-200px);
+  }
+  100% {
+    transform: translateX(200px);
   }
 }
 
 .section2 {
   @apply bg-gradient-to-b from-[#e3e6e9] via-[#e9ecef] to-[#f6f6f6] w-full pb-[50px];
   @apply dark:bg-gradient-to-b dark:from-zinc-900 dark:to-zinc-800;
-  box-shadow: inset 7px 43px 47px -59px rgba(0,0,0,0.34);
+  box-shadow: inset 7px 43px 47px -59px rgba(0, 0, 0, 0.34);
 }
 
 .topic-animate {
@@ -45,24 +142,61 @@ body {
   @apply landscape:mt-8 sm:landscape:mt-12 md:landscape:mt-0;
   @apply md:-mt-32 lg:-mt-48 xl:-mt-52 2xl:-mt-60;
   @apply dark:text-neutral-300 font-ubuntu;
+  position: relative;
+  z-index: 10;
 }
 
-/* Responsive typography scaling */
+/* Responsive typography scaling - More minimal approach */
 .topicText {
   @apply font-light mb-1 leading-tight;
-  @apply text-[32px] sm:text-[40px] md:text-[50px] lg:text-[60px] xl:text-[80px] 2xl:text-[100px];
-  @apply sm:leading-[40px] md:leading-[50px] lg:leading-[70px] xl:leading-[90px] 2xl:leading-[120px];
+  @apply text-[28px] sm:text-[32px] md:text-[38px] lg:text-[44px] xl:text-[52px] 2xl:text-[60px];
+  @apply sm:leading-[32px] md:leading-[40px] lg:leading-[48px] xl:leading-[56px] 2xl:leading-[64px];
   @apply dark:text-white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Enhanced responsive subtitle */
+/* Enhanced responsive subtitle - More minimal */
 .subText {
   @apply font-extralight text-center;
-  @apply text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl;
-  @apply w-[85%] sm:w-[70%] md:w-[60%] lg:w-[45%] xl:w-[35%] 2xl:w-[30%];
+  @apply text-xs sm:text-sm md:text-base lg:text-base xl:text-lg;
+  @apply w-[90%] sm:w-[75%] md:w-[65%] lg:w-[50%] xl:w-[40%] 2xl:w-[35%];
   @apply md:text-left;
   @apply dark:text-neutral-300 font-kanit;
   line-height: 1.5;
+  backdrop-filter: blur(1px);
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.dark .topicText {
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Enhanced responsive subtitle */
+/* Enhanced responsive link styling - More minimal */
+.linkText {
+  @apply inline-block cursor-pointer duration-500 font-light underline-offset-[2px] mt-4;
+  @apply text-sm sm:text-sm md:text-base lg:text-base;
+  @apply text-white text-center;
+  @apply md:text-left;
+  @apply dark:text-neutral-200;
+
+  /* Better mobile touch targets and visibility */
+  @apply py-2 px-3 sm:py-2 sm:px-3;
+  backdrop-filter: blur(2px);
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-weight: 300;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dark .subText {
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .subText span {
@@ -71,16 +205,11 @@ body {
 }
 
 /* Enhanced responsive link styling */
-.linkText {
-  @apply inline-block cursor-pointer duration-500 font-light underline-offset-[2px] mt-3;
-  @apply text-sm sm:text-base lg:text-base;
-  @apply text-neutral-50 text-center;
-  @apply sm:landscape:text-black sm:landscape:bg-white/60 sm:landscape:rounded-2xl sm:landscape:px-3 sm:landscape:py-2;
-  @apply md:text-left;
-  @apply dark:text-neutral-200 dark:sm:landscape:text-white dark:sm:landscape:bg-black/60;
-  
-  /* Better mobile touch targets */
-  @apply py-2 px-1 sm:py-1 sm:px-3;
+
+.dark .linkText {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #e2e8f0;
 }
 
 .linkText:hover {
@@ -89,6 +218,11 @@ body {
   @apply dark:text-neutral-100 dark:sm:landscape:text-neutral-200;
   filter: drop-shadow(2px 2px 10px #999999);
   transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.dark .linkText:hover {
+  background: rgba(0, 0, 0, 0.4);
 }
 
 /* Responsive advice section */
@@ -97,22 +231,45 @@ body {
 }
 
 /* Enhanced footer responsiveness */
-/* footer {
-  @apply bg-[#f3f3f3] w-full py-6 sm:py-8 px-4 sm:px-6 lg:px-8;
-  @apply text-center flex justify-center text-white;
+footer {
+  @apply bg-[#f3f3f3] w-full h-auto py-6 sm:py-8 px-4 sm:px-6 lg:px-8;
+  @apply text-center flex justify-center items-center text-white;
   @apply text-sm sm:text-base;
   @apply dark:bg-neutral-800 font-kanit;
-} */
+}
 
 /* Responsive utilities for better mobile experience */
 @media (max-width: 640px) {
   .section1 {
     min-height: 100vh;
-    min-height: 100svh; /* Better mobile viewport support */
+    min-height: 100svh;
   }
-  
+
   .web-topic {
     padding: 1rem;
+  }
+
+  .section1::after {
+    animation-duration: 30s;
+  }
+
+  .topicText {
+    @apply text-[30px] leading-[34px];
+  }
+
+  .subText {
+    @apply text-xs;
+    padding: 0.75rem;
+    width: 95%;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .linkText {
+    @apply text-sm;
+    width: 85%;
+    margin: 1rem auto 0;
+    padding: 0.75rem;
+    font-weight: 300;
   }
 }
 
@@ -121,9 +278,17 @@ body {
   .web-topic {
     @apply -mt-20;
   }
-  
+
   .topicText {
-    @apply text-[55px] leading-[60px];
+    @apply text-[65px] leading-[70px];
+  }
+
+  .subText {
+    @apply text-lg;
+  }
+
+  .linkText {
+    @apply text-lg;
   }
 }
 
@@ -132,13 +297,17 @@ body {
   .web-topic {
     @apply ml-60 -mt-80;
   }
-  
+
   .topicText {
-    @apply text-[120px] leading-[140px];
+    @apply text-[70px] leading-[80px];
   }
-  
+
   .subText {
-    @apply text-2xl w-[25%];
+    @apply text-xl w-[30%];
+  }
+
+  .linkText {
+    @apply text-lg;
   }
 }
 
@@ -163,6 +332,10 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .topic-animate {
+    animation: none;
+  }
+
+  .section1::after {
     animation: none;
   }
 }
@@ -196,7 +369,7 @@ body {
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
-  
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;

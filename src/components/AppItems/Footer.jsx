@@ -1,13 +1,19 @@
-import React from "react";
+import './footer-theme.css'
 
 const Footer = () => {
   return (
-    <footer className="py-4">
-      <div className="text-neutral-600 text-sm font-extralight text-center px-8">
-        <p className="dark:text-[#f3f3f3]">Copyright © 2024 PosExplorer All Rights Reserved</p>
+    <footer className="footer-section relative py-8 overflow-hidden">
+      {/* Background patterns */}
+      <div className="footer-bg-pattern"></div>
+      <div className="footer-particles"></div>
+
+      <div className="footer-content relative z-10">
+        <div className="footer-text-wrapper">
+          <p className="footer-text">Copyright © 2024 PosExplorer All Rights Reserved</p>
+        </div>
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer
